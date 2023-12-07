@@ -69,72 +69,60 @@ public class EstateAgent {
 			}
 			updateLists();
 		}
+
+		//sorting with sort function 
+		ArrayList<Building> sortedCity = new ArrayList<Building>();
+		sortedCity = theBuildings;
 		
-		//sorting with sort function
+		Collections.sort(sortedCity);
+		
 		if (arg == CITYBUILDINGS) {
-			ArrayList<Building> sortedCity = new ArrayList<Building>();
-			
-			for (int i = 0; i < theCityBuildings.size(); i++) {
-				sortedCity.add((Building) theCityBuildings.get(i));
+			for (int i = 0; i < theBuildings.size(); i++) {
+				if(theBuildings.get(i) instanceof Cottage) {
+					theBuildings.set(i, sortedCity.get(i));
+				}
 			}
-			
-			Collections.sort(sortedCity);
-			for (int i = 0; i < theCityBuildings.size(); i++) {
-				sortedCity.add((Building) theCityBuildings.get(i));
-			}
-			
 			updateLists(CITYBUILDINGS);
 		}
 		
 		if (arg == COTTAGES) {
-			ArrayList<Building> sortedCity = new ArrayList<Building>();
-			
-			for (int i = 0; i < theCottages.size(); i++) {
-				sortedCity.add((Building) theCottages.get(i));
-			}
-			
-			Collections.sort(sortedCity);
-			for (int i = 0; i < theCottages.size(); i++) {
-				sortedCity.add((Building) theCottages.get(i));
-			}
-			
+			for (int i = 0; i < theBuildings.size(); i++) {
+				if (theBuildings.get(i) instanceof CityProperty){
+					theBuildings.set(i, sortedCity.get(i));
+				}
+			}	
 			updateLists(COTTAGES);
 		}
+		
+		theBuildings = sortedCity;
 		
 		return returner;
 	}
 	
 	public void updateLists() {
 		for (int i = 0; i < theBuildings.size(); i++) {
-			if (theBuildings.get(i) instanceof Cottage) {
-				for (int j = 0; j < theCottages.size(); j++){
-					theCottages.set(j,(Cottage) theBuildings.get(i));
-				}	
-			}
-			if (theBuildings.get(i) instanceof CityProperty) {
-				for (int j = 0; j < theCityBuildings.size(); j++){
-					theCityBuildings.set(j,(CityProperty) theBuildings.get(i));
-				}		
-			}
+			
 		}
 	}
 	
 	public void updateLists(int arg) {
 		
+		
 		if (arg == COTTAGES) {
+			int j = 0;
 			for (int i = 0; i < theBuildings.size(); i++) {
-				if (theBuildings.get(i) instanceof Cottage) {
-					for (int j = 0; j < theCottages.size(); j++){
-						theCottages.set(j,(Cottage) theBuildings.get(i));
-					}	
+				if (theBuildings.get(i) instanceof Cottage){
+					theCottages.set(j, (Cottage)theBuildings.get(i));
+					j++;
 				}
 			}
+				
 		}else if (arg == CITYBUILDINGS) {
+			int j = 0;
 			for (int i = 0; i < theBuildings.size(); i++) {
-				if (theBuildings.get(i) instanceof CityProperty) {
-					for (int j = 0; j < theCityBuildings.size(); j++){
-						theCityBuildings.set(j,(CityProperty) theBuildings.get(i));
-					}		
+				if (theBuildings.get(i) instanceof CityProperty){
+					theCityBuildings.set(j, (CityProperty)theBuildings.get(i));
+					j++;
 				}
 			}
 		} else {
