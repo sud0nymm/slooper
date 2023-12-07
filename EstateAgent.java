@@ -79,7 +79,7 @@ public class EstateAgent {
 		if (arg == CITYBUILDINGS) {
 			for (int i = 0; i < theBuildings.size(); i++) {
 				if(theBuildings.get(i) instanceof Cottage) {
-					theBuildings.set(i, sortedCity.get(i));
+					sortedCity.set(i, theBuildings.get(i));
 				}
 			}
 			updateLists(CITYBUILDINGS);
@@ -88,7 +88,7 @@ public class EstateAgent {
 		if (arg == COTTAGES) {
 			for (int i = 0; i < theBuildings.size(); i++) {
 				if (theBuildings.get(i) instanceof CityProperty){
-					theBuildings.set(i, sortedCity.get(i));
+					sortedCity.set(i, theBuildings.get(i));
 				}
 			}	
 			updateLists(COTTAGES);
@@ -100,8 +100,16 @@ public class EstateAgent {
 	}
 	
 	public void updateLists() {
+		int p = 0, c = 0;
 		for (int i = 0; i < theBuildings.size(); i++) {
-			
+			if (theBuildings.get(i) instanceof CityProperty) {
+				theCityBuildings.set(c, (CityProperty)theBuildings.get(i));
+				p++;
+			}
+			if (theBuildings.get(i) instanceof Cottage) {
+				theCottages.set(c, (Cottage)theBuildings.get(i));
+				c++;
+			}
 		}
 	}
 	
