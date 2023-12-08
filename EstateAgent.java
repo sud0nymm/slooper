@@ -103,7 +103,7 @@ public class EstateAgent {
 		int p = 0, c = 0;
 		for (int i = 0; i < theBuildings.size(); i++) {
 			if (theBuildings.get(i) instanceof CityProperty) {
-				theCityBuildings.set(c, (CityProperty)theBuildings.get(i));
+				theCityBuildings.set(p, (CityProperty)theBuildings.get(i));
 				p++;
 			}
 			if (theBuildings.get(i) instanceof Cottage) {
