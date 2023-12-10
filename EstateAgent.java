@@ -73,29 +73,39 @@ public class EstateAgent {
 		//sorting with sort function 
 		ArrayList<Building> sortedCity = new ArrayList<Building>();
 		sortedCity = theBuildings;
+		ArrayList<Building> cott = new ArrayList<Building>();
+		ArrayList<Building> cityB = new ArrayList<Building>();
 		
-		Collections.sort(sortedCity);
-		
-		if (arg == CITYBUILDINGS) {
-			for (int i = 0; i < theBuildings.size(); i++) {
-				if(theBuildings.get(i) instanceof Cottage) {
-					sortedCity.set(i, theBuildings.get(i));
-				}
+		for (Building b : sortedCity) {
+			if (b instanceof CityProperty) {
+				cityB.add(b);
+			} else if (b instanceof Cottage) {
+				cott.add(b);
 			}
-			updateLists(CITYBUILDINGS);
 		}
 		
+		if (arg == CITYBUILDINGS) {
+			Collections.sort(cityB);
+		}
 		if (arg == COTTAGES) {
-			for (int i = 0; i < theBuildings.size(); i++) {
-				if (theBuildings.get(i) instanceof CityProperty){
-					sortedCity.set(i, theBuildings.get(i));
-				}
-			}	
-			updateLists(COTTAGES);
+			Collections.sort(cott);
+		}
+		
+		int p = 0, c = 0;
+		for (int i = 0; i < theBuildings.size(); i++) {
+			if (theBuildings.get(i) instanceof Cottage) {
+				sortedCity.set(i, cott.get(c));
+				c++;
+			}else if (theBuildings.get(i) instanceof CityProperty) {
+				sortedCity.set(i, cityB.get(p));
+				p++;
+			}
 		}
 		
 		theBuildings = sortedCity;
-		
+		if (arg == COTTAGES || arg == CITYBUILDINGS) {
+			updateLists(arg);
+		}
 		return returner;
 	}
 	
@@ -114,7 +124,6 @@ public class EstateAgent {
 	}
 	
 	public void updateLists(int arg) {
-		
 		
 		if (arg == COTTAGES) {
 			int j = 0;
