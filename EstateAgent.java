@@ -1,6 +1,6 @@
 package lab5;
 import java.util.ArrayList;
-import java.util.Scanner;
+import javax.swing.*;
 import java.util.Collections;
 
 public class EstateAgent {
@@ -33,9 +33,8 @@ public class EstateAgent {
 	
 	public String sort(int arg) {
 		
-		System.out.println("Sorting by price (1) or by area(2)?\n");
-		Scanner s = new Scanner(System.in);
-		String select = s.next();
+		final JFrame parent = new JFrame();
+		String select = JOptionPane.showInputDialog(parent, "sort by price (1) or by area (2) ?", null);
 		
 		String returner = "Not sorted\n";	
 		
