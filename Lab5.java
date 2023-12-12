@@ -2,7 +2,8 @@ package lab5;
 
 public class Lab5 {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) {		
+		
 		
 		System.out.println("Diagnostics for buildings");
 		Cottage myCottage = new Cottage("Vildmarkvägen 1", 850000.0, 100, 100.0);
@@ -25,10 +26,11 @@ public class Lab5 {
 		theEstateAgent.addBuilding(new Cottage("Lindövägen 18", 950000.0,80,200.0));
 		System.out.println(theEstateAgent);
 		
+		/*
 		System.out.println("all buildings");
 		System.out.println(theEstateAgent.sort(EstateAgent.ALLBUILDINGS));
 		System.out.println(theEstateAgent);
-		
+		*/
 		System.out.println("Sorting cottages");
 		System.out.println(theEstateAgent.sort(EstateAgent.COTTAGES));
 		System.out.println(theEstateAgent);
